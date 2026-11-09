@@ -178,7 +178,7 @@ section.tight{padding-top:0}
 /* honors */
 .hon{margin-top:48px;border-top:1px solid var(--line)}
 .h{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:22px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.h .n{font-family:var(--display);font-weight:850;font-stretch:112%;font-size:30px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.h .n{min-width:0;overflow-wrap:anywhere;font-family:var(--display);font-weight:850;font-stretch:112%;font-size:30px;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
 .h .n small{display:block;font-family:var(--mono);font-size:10.5px;color:var(--dim);font-weight:400;margin-top:6px;letter-spacing:.06em}
 .h h3{margin:0;font-size:17px;font-weight:620}
 .h p{margin:6px 0 0;color:var(--muted);font-size:14.5px;max-width:64ch}
@@ -284,7 +284,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="hero-foot">
       <div class="tag">
         <div class="rule"></div>
-        <p>Data Science student, Python trainer and AI builder turning messy data and dense documents into tools people can actually use.<span class="caret" aria-hidden="true"></span></p>
+        <p>Data Science student passionate about Python, Machine Learning, and turning data into meaningful insights and practical solutions.<span class="caret" aria-hidden="true"></span></p>
         <div class="hint" id="hint">Hover a letter to see one of my certificates</div>
       </div>
       <a class="btn" href="Maria-Aqdas-CV.pdf" target="_blank" rel="noopener">View Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -302,9 +302,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <div class="cap">Maria Aqdas · Virtual University of Pakistan</div>
       </div>
       <div class="about-copy">
-        <p>I'm a 5th-semester <strong>BS Data Science</strong> student at the <strong>Virtual University of Pakistan</strong>, studying remotely from Kasur, Punjab. My work sits where data analysis meets applied AI: I clean and model data, then ship it as a working app.</p>
-        <p>In May 2026 my team's contract-risk tool <strong>Legal Lens AI</strong> took 1st place out of 311 projects at the Pak Angels &amp; HEC Generative AI Hackathon, and I was named a <strong>Top Performer</strong> of the NCEAC–HEC Generative AI Training. Since then I've built a policy impact simulator, a dropout predictor, an interview coach and a live air-quality dashboard, and trained students as a <strong>Python instructor at iCodeGuru</strong>.</p>
-        <p>On Kaggle I'm a <strong>Datasets Expert</strong> (global rank 310) with 6 published datasets, each with a 10.0 usability score, and 55+ public notebooks.</p>
+        <p>I'm a 5th-semester <strong>BS Data Science</strong> student at the <strong>Virtual University of Pakistan</strong>. I enjoy exploring data, finding patterns, solving problems, and building things with code.</p>
+        <p>My main skills include <strong>Python, SQL, Exploratory Data Analysis (EDA), Data Visualization, and Machine Learning</strong>. I enjoy working with real-world datasets and using these skills to develop practical projects.</p>
+        <p>I've worked on projects involving machine learning, data analysis, and AI-powered applications. One of my proudest achievements was securing <strong>1st place among 311 projects</strong> at the Pak Angels &amp; HEC Generative AI Hackathon with my team project, <strong>Legal Lens AI</strong>.</p>
+        <p>I'm also a <strong>Kaggle Datasets Expert</strong>, with 6 published datasets and 55+ public notebooks.</p>
+        <p>I'm continuously learning, improving my technical skills, and exploring new ways to use data to solve real-world problems.</p>
         <dl class="facts">
           <div><dt>Education</dt><dd>BS Data Science, Virtual University (2024–2028)</dd></div>
           <div><dt>CGPA</dt><dd>3.80 / 4.00</dd></div>
@@ -320,7 +322,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="intro">
         <h3>Academic record</h3>
         <p>Final results from the university portal. The percentile shows where my marks stand against every student who took the same course.</p>
-        <div class="big">Top 3<small>BS Data Science · 1st semester · GPA 3.99</small></div>
+        <div class="big">3.80<small>CGPA out of 4.00 · BS Data Science</small></div>
       </div>
       <div class="bars" id="bars"></div>
     </div>
@@ -518,14 +520,13 @@ const PROJECTS=[
 const HONORS=[
  ["#1","of 311 projects","1st Place, Pak Angels & HEC Generative AI Hackathon (Cohort 3)","Legal Lens AI ranked first in the 48-hour national hackathon, May 2026.","#cert:pakangels-winners"],
  ["Top","Performer","Generative AI Application Developer, NCEAC–HEC GenAI Training Cohort 3","Awarded Top Performer by ULEF USA with Pak Angels, iCodeGuru and Aspire Pakistan.","#cert:ulef-genai"],
- ["Top 3","BS Data Science","3rd in the BS Data Science cohort, 1st semester","Semester GPA 3.99 at the Virtual University of Pakistan.",""],
  ["Gold","ICS 2022–24","Academic Excellence Gold Medalist, Govt. Hanifan Begum College","1st position across the entire ICS graduating cohort, Lahore Board (85%).",""],
  ["2025","Govt. of Pakistan","Prime Minister's National Youth Laptop Award","Awarded on academic merit.",""],
  ["#310","Kaggle global","Kaggle Datasets Expert","6 published datasets with 10.0 usability scores and 55+ public notebooks.","https://www.kaggle.com/mariaaqdas"],
- ["Excellence","FortyGuard'26","Demonstrated Excellence Award, FortyGuard Hackathon'26","Urban Heat Risk Dashboard with real-time safety guidance.","#cert:fortyguard"],
+ ["Award","FortyGuard'26","Demonstrated Excellence Award, FortyGuard Hackathon'26","Urban Heat Risk Dashboard with real-time safety guidance.","#cert:fortyguard"],
  ["12,885","participants","Global Finalist, HackerRank Orchestrate AI Agent Hackathon","Builder track: an end-to-end autonomous agent in a 24-hour sprint.","https://drive.google.com/file/d/1B-Pgus_tdAHIJAnuqS4X3Jb5Bt9zLHDe/view?usp=sharing"],
  ["14th","team rank","StormCost Kaggle community prediction competition","Hosted by BTAJI Crew.","#cert:stormcost"],
- ["Pre-final","ICSC 2026","Qualified for the pre-final round, International Computer Science Competition","Passed the 2026 qualification round.","#cert:icsc"],
+ ["ICSC","2026","Qualified for the pre-final round, International Computer Science Competition","Passed the 2026 qualification round.","#cert:icsc"],
  ["40h","Sep 2026","Graduate Fellow, Aspire Leaders Program","Leadership, cross-cultural ethics and social impact seminars founded by Harvard faculty.","#cert:aspire"],
 ];
 
