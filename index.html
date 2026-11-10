@@ -582,7 +582,7 @@ document.addEventListener("click",e=>{if(!nameEl.contains(e.target))hide()});
 if(matchMedia("(hover:none)").matches)$("#hint").textContent="Tap a letter to see one of my certificates";
 
 /* ---- academic bars ---- */
-$("#bars").innerHTML=COURSES.map(([t,code,g,p])=>`<div class="bar"><div class="t"><b>${esc(t)}</b><i>${code}</i></div><span class="g">${g}</span><span class="p">${p.toFixed(2)}</span><div class="track"><span style="width:${((p-90)/10*100).toFixed(1)}%"></span></div></div>`).join("")+`<div class="legend"><span>Grade</span><span>Percentile (bar from 90 to 100)</span></div>`;
+$("#bars").innerHTML=COURSES.map(([t,code,g,p])=>`<div class="bar"><div class="t"><b>${esc(t)}</b><i>${code}</i></div><span class="g">${g}</span><span class="p">${p.toFixed(2)}</span><div class="track"><span style="width:${p.toFixed(1)}%"></span></div></div>`).join("")+`<div class="legend"><span>Grade</span><span>Percentile (out of 100)</span></div>`;
 
 /* ---- experience ---- */
 $("#xp").innerHTML=XP.map(([w,r,o,d,c])=>`<div class="x"><span class="when">${esc(w)}</span><div style="min-width:0"><h3>${esc(r)}</h3><div class="org">${esc(o)}</div><p>${esc(d)}</p></div><div class="links">${c?linkHTML(c.startsWith("http")?["GitHub",c]:["Certificate","#cert:"+c]):""}</div></div>`).join("");
