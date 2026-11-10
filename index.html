@@ -79,6 +79,7 @@ section.tight{padding-top:0}
 .hero-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-top:clamp(44px,7vw,84px);position:relative;z-index:3}
 .tag{max-width:560px;min-width:0}
 .tag .rule{width:22px;height:1px;background:var(--dim);margin-bottom:18px}
+.tag p strong{font-weight:600;color:var(--fg)}
 .tag p{margin:0;font-size:clamp(18px,2.1vw,23px);line-height:1.45;color:var(--fg-2);font-weight:350}
 .caret{display:inline-block;width:2px;height:1.05em;background:var(--accent);vertical-align:-3px;margin-left:3px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
@@ -192,6 +193,9 @@ section.tight{padding-top:0}
 .filters button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-top:26px}
 .cert{display:flex;flex-direction:column;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;transition:transform .25s,border-color .25s}
+.more{display:flex;justify-content:center;margin-top:22px}
+.more button{font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.more button:hover{border-color:var(--accent)}
 .cert:hover{transform:translateY(-3px);border-color:var(--accent)}
 .cert .th{aspect-ratio:4/3;border-radius:5px;background:#e9e7e1 center/contain no-repeat;margin-bottom:12px}
 .cert b{font-size:14px;font-weight:600;line-height:1.35;padding:0 4px}
@@ -243,13 +247,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (max-width:900px){
   .about-grid,.work-grid,.acad{grid-template-columns:minmax(0,1fr)}
   .about-grid .portrait{max-width:300px}
-  .preview{display:none}
+  .preview,.hov{display:none}
   .do-grid,.ds{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:640px){
   .pill a{padding:6px 8px;font-size:12px}
   .pill a[data-k="experience"]{display:none}
-  .workbtn{top:auto;bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .workbtn{top:auto;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);border-color:var(--fg);box-shadow:0 6px 18px var(--shadow)}
+  .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .cert{padding:8px}.cert b{font-size:12.5px}.cert i{font-size:10px}
   .prow,.x,.h{grid-template-columns:minmax(0,1fr);gap:8px}
   .links{justify-content:flex-start}
   .facts div{grid-template-columns:minmax(0,1fr);gap:2px}
@@ -287,7 +293,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div class="hero-foot">
       <div class="tag">
         <div class="rule"></div>
-        <p>Data Science student passionate about Python, Machine Learning, and turning data into meaningful insights and practical solutions.<span class="caret" aria-hidden="true"></span></p>
+        <p>Data Science student and AI builder. <strong>1st place among 311 projects</strong> at the Pak Angels &amp; HEC Generative AI Hackathon, Kaggle Datasets Expert, 3.80 CGPA.<span class="caret" aria-hidden="true"></span></p>
         <div class="hint" id="hint">Hover a letter to see one of my certificates</div>
       </div>
       <a class="btn" href="Maria-Aqdas-CV.pdf" target="_blank" rel="noopener">View Resume <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
@@ -361,7 +367,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section id="experience" class="tight">
   <div class="wrap">
     <div class="eyebrow">Experience</div>
-    <h2>Teaching &amp;<br>internships</h2>
+    <h2>Teaching &amp;<br>hands-on work</h2>
     <div class="xp" id="xp"></div>
   </div>
 </section>
@@ -370,7 +376,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap">
     <div class="work-head">
       <div><div class="eyebrow">Selected work</div><h2>Things I've<br>built &amp; shipped</h2></div>
-      <p>Live apps, hackathon builds and open data. Hover a project to preview it.</p>
+      <p>Live apps, hackathon builds and open data.<span class="hov"> Hover a project to preview it.</span></p>
     </div>
     <div class="work-grid">
       <div class="plist" id="plist"></div>
@@ -401,6 +407,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <h2><span id="certCount"></span> certificates</h2>
     <div class="filters" id="filters" role="group" aria-label="Filter certificates"></div>
     <div class="cgrid" id="cgrid"></div>
+    <div class="more" id="more" hidden><button type="button" id="moreBtn"></button></div>
   </div>
 </section>
 
@@ -445,7 +452,7 @@ const IMG={"aspire": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAieyJvAAD//gAQTGF
 const COURSERA="https://www.coursera.org/verify/";
 const CERTS=[
  {f:"ulef-genai",t:"Generative AI Application Developer · Top Performer",s:"ULEF USA × Pak Angels × NCEAC–HEC · May 2026",c:"program"},
- {f:"pakangels-winners",t:"1st Place, Legal Lens AI (Top 10 of 311 projects)",s:"Pak Angels HEC GenAI Hackathon · May 2026",c:"program"},
+ {f:"pakangels-winners",t:"1st Place, Legal Lens AI · official winners list (311 projects)",s:"Pak Angels HEC GenAI Hackathon · May 2026",c:"program"},
  {f:"fortyguard",t:"FortyGuard Hackathon'26 · Demonstrated Excellence",s:"FortyGuard · Aug 2026",c:"program"},
  {f:"icodeguru-trainer",t:"Trainer, Mastering Python Programming 2026",s:"iCodeGuru · Oct 2026",c:"program"},
  {f:"aspire",t:"Aspire Leaders Program 2026",s:"Aspire Institute · Sep 2026",c:"program"},
@@ -488,15 +495,13 @@ const COURSES=[
 
 const XP=[
  ["Sep – Oct 2026","Python Trainer","iCodeGuru × Allah Ditta Ideal Girls Higher Secondary School, Daska","Taught the course \"Mastering Python Programming 2026\" (1 Sep – 16 Oct 2026); recognised with a certificate of appreciation.","icodeguru-trainer"],
- ["Jun 2026","Python Programming Intern","Crixsoft Solution · Remote","One-month internship applying Python to hands-on projects.",""],
- ["Mar 2026","Data Science Intern","SoftGrowTech · Remote","One-month data science internship with assigned tasks, training sessions and project reviews.",""],
- ["Feb – Mar 2026","Data Science Intern","CodeAlpha · Remote","Data science internship, 20 Feb – 20 Mar 2026.",""],
+ ["Feb – Mar 2026","Data Science Practice Tasks","Self-directed · CodeAlpha task set","Four notebooks built from the CodeAlpha data science task brief: Iris classification, unemployment analysis for India during COVID-19, car price prediction and sales prediction from advertising spend (Linear and Random Forest regression, evaluated with R², MAE and RMSE).","https://github.com/maria-aqdas?tab=repositories&q=CodeAlpha"],
 ];
 
 const PROJECTS=[
  {id:"legal",name:"Legal Lens AI",kind:"Hackathon winner · GenAI",year:"2026",hue:188,big:"#1 / 311",lbl:"Pak Angels × HEC GenAI Hackathon",
   desc:"Scans contracts for risky or unfair clauses, from buried liabilities to one-sided indemnities, and explains each in plain language with a risk rating.",
-  tools:["Python","Streamlit","LLMs","NLP"],links:[["GitHub","https://github.com/maria-aqdas"],["Winners list","#cert:pakangels-winners"]]},
+  tools:["Python","Streamlit","LLMs","NLP"],links:[["GitHub","https://github.com/maria-aqdas/Legal-Lens-AI"],["Winners list","#cert:pakangels-winners"]]},
  {id:"civitas",name:"CivitasX",kind:"AI policy impact simulator",year:"2026",hue:265,big:"3 lenses",lbl:"Economic · social · environmental impact",
   desc:"Reads policy drafts from text or PDF (OCR fallback), simulates their impact by sector and shows it in Plotly dashboards with multilingual audio.",
   tools:["Gemini API","pytesseract","Plotly","Streamlit"],links:[["Live","https://civitasx-xyrswsuy7glemapphkrkeqb.streamlit.app"],["GitHub","https://github.com/maria-aqdas/civitasx"]]},
@@ -580,7 +585,7 @@ if(matchMedia("(hover:none)").matches)$("#hint").textContent="Tap a letter to se
 $("#bars").innerHTML=COURSES.map(([t,code,g,p])=>`<div class="bar"><div class="t"><b>${esc(t)}</b><i>${code}</i></div><span class="g">${g}</span><span class="p">${p.toFixed(2)}</span><div class="track"><span style="width:${((p-90)/10*100).toFixed(1)}%"></span></div></div>`).join("")+`<div class="legend"><span>Grade</span><span>Percentile (bar from 90 to 100)</span></div>`;
 
 /* ---- experience ---- */
-$("#xp").innerHTML=XP.map(([w,r,o,d,c])=>`<div class="x"><span class="when">${esc(w)}</span><div style="min-width:0"><h3>${esc(r)}</h3><div class="org">${esc(o)}</div><p>${esc(d)}</p></div><div class="links">${c?linkHTML(["Certificate","#cert:"+c]):""}</div></div>`).join("");
+$("#xp").innerHTML=XP.map(([w,r,o,d,c])=>`<div class="x"><span class="when">${esc(w)}</span><div style="min-width:0"><h3>${esc(r)}</h3><div class="org">${esc(o)}</div><p>${esc(d)}</p></div><div class="links">${c?linkHTML(c.startsWith("http")?["GitHub",c]:["Certificate","#cert:"+c]):""}</div></div>`).join("");
 
 /* ---- generative covers ---- */
 function paint(cv,p,t=0){
@@ -631,10 +636,11 @@ $("#openWork").addEventListener("click",openOv);$("#ovX").addEventListener("clic
 $("#hon").innerHTML=HONORS.map(([n,sm,t,d,u])=>`<div class="h"><div class="n">${esc(n)}<small>${esc(sm)}</small></div><div style="min-width:0"><h3>${esc(t)}</h3><p>${esc(d)}</p></div><div class="links">${u?linkHTML([u.startsWith("#cert:")?"Certificate":"Proof",u]):""}</div></div>`).join("");
 
 /* ---- certificates ---- */
-const cgrid=$("#cgrid"),filters=$("#filters");let cat="all";
+const cgrid=$("#cgrid"),filters=$("#filters");let cat="all",showAll=false;const FIRST=8;
 CATS.forEach(([k,l])=>{const b=el("button",{type:"button",class:k===cat?"on":"","aria-pressed":String(k===cat)},`${esc(l)} <span style="opacity:.6">${k==="all"?CERTS.length:CERTS.filter(c=>c.c===k).length}</span>`);
-  b.onclick=()=>{cat=k;filters.querySelectorAll("button").forEach(x=>{x.classList.toggle("on",x===b);x.setAttribute("aria-pressed",String(x===b))});renderCerts()};filters.append(b)});
-function renderCerts(){cgrid.innerHTML="";CERTS.filter(c=>cat==="all"||c.c===cat).forEach(c=>{const b=el("button",{type:"button",class:"cert","data-cert":c.f},`<span class="th" style="background-image:url(${IMG[c.f]})"></span><b>${esc(c.t)}</b><i>${esc(c.s)}</i>`);cgrid.append(b)})}
+  b.onclick=()=>{cat=k;showAll=false;filters.querySelectorAll("button").forEach(x=>{x.classList.toggle("on",x===b);x.setAttribute("aria-pressed",String(x===b))});renderCerts()};filters.append(b)});
+function renderCerts(){cgrid.innerHTML="";const list=CERTS.filter(c=>cat==="all"||c.c===cat);$("#more").hidden=list.length<=FIRST;$("#moreBtn").textContent=showAll?"Show fewer":`Show all ${list.length}`;$("#moreBtn").setAttribute("aria-expanded",String(showAll));(showAll?list:list.slice(0,FIRST)).forEach(c=>{const b=el("button",{type:"button",class:"cert","data-cert":c.f},`<span class="th" style="background-image:url(${IMG[c.f]})"></span><b>${esc(c.t)}</b><i>${esc(c.s)}</i>`);cgrid.append(b)})}
+$("#moreBtn").onclick=()=>{showAll=!showAll;renderCerts();if(!showAll)$("#certificates").scrollIntoView()};
 renderCerts();$("#certCount").textContent=CERTS.length;
 const lb=$("#lb");let lbFrom=null;
 function openLb(c){if(!c)return;lbFrom=document.activeElement;$("#lbImg").src=IMG[c.f];$("#lbImg").alt=c.t;$("#lbT").textContent=c.t;$("#lbS").textContent=c.s;const v=$("#lbV");v.hidden=!c.v;if(c.v)v.href=c.v;lb.hidden=false;document.body.style.overflow="hidden";$("#lbX").focus()}
